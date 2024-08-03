@@ -53,14 +53,9 @@ namespace Gameplay
         public void EquipWeapon(WeaponData weaponData)
         {
             if (weaponData == null) return;
-            if (WeaponSlots.Any(i => !i.IsEmpty && i.Weapon.WeaponData == weaponData))
-            {
-                Debug.Log($"{gameObject.name} already has {weaponData.WeaponName}");
-                return;
-            }
-        
             if (WeaponSlotsFull) return;
-            var emptyWeaponSlot = _weaponSlots.FirstOrDefault(i => i.IsEmpty);
+            
+            var emptyWeaponSlot = _weaponSlots.First(i => i.IsEmpty);
             emptyWeaponSlot.EquipWeapon(weaponData);
             ArrangeWeaponsOnCircle();
         }

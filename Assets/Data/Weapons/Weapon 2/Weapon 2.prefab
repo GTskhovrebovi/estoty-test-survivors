@@ -131,5 +131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimAtTarget: 1
   aimRange: 10
+  fireRate: {fileID: 11400000, guid: 7128e99ce5fe9674c8ee1ef31360732b, type: 2}
   <SpawnPoint>k__BackingField: {fileID: 797741836654845006}
   shootAction: {fileID: 11400000, guid: 8ebfc95250c1b09418b7c004e48f43cc, type: 2}

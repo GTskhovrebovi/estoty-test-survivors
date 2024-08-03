@@ -8,6 +8,7 @@ namespace Gameplay
     public class Character : MonoBehaviour
     {
         [SerializeField] private Transform graphics;
+        [SerializeField] private SpriteRenderer graphicsSpriteRenderer;
         [SerializeField] private Animator animator;
         [SerializeField] private StatType movementSpeedStat;
         [SerializeField] private StatType healthStat;
@@ -16,9 +17,11 @@ namespace Gameplay
     
         public Health Health { get; private set; }
         public ModifierHolder ModifierHolder { get; private set; }
+        public UpgradeHolder UpgradeHolder { get; private set; }
         public WeaponUser WeaponUser { get; private set; }
         public LevelingSystem LevelingSystem { get; private set; }
         public Rigidbody2D RigidBody { get; private set; }
+        public WeaponActionRequirementHolder WeaponActionRequirementHolder { get; private set; }
         public Team Team { get; set; }
         public Vector2 MovementDirection { get; set; }
         public Vector2 FacingDirection { get; private set; }
@@ -27,6 +30,7 @@ namespace Gameplay
         public int MaxAmmoAmount { get; private set; }
         public int NumberOfKills { get; private set; }
         public bool HasAmmo => CurrentAmmoAmount > 0;
+        public SpriteRenderer GraphicsSpriteRenderer => graphicsSpriteRenderer;
         
         private Stat _movementStat;
         private Stat _maxAmmoStat;
@@ -42,15 +46,17 @@ namespace Gameplay
         public CharacterStats CharacterStats { get; private set; }
         public Vector3 Center => _collider2D.bounds.center;
         private CircleCollider2D _collider2D;
-        protected virtual void Awake()
+        protected void Awake()
         {
             _collider2D = GetComponent<CircleCollider2D>();
             CharacterStats = new CharacterStats();
             Health = GetComponent<Health>();
             ModifierHolder = GetComponent<ModifierHolder>();
+            UpgradeHolder = GetComponent<UpgradeHolder>();
             WeaponUser = GetComponent<WeaponUser>();
             RigidBody = GetComponent<Rigidbody2D>();
             LevelingSystem = GetComponent<LevelingSystem>();
+            WeaponActionRequirementHolder = GetComponent<WeaponActionRequirementHolder>();
             _movementStat = CharacterStats.GetStat(movementSpeedStat);
         }
 

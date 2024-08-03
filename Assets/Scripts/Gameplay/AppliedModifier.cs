@@ -7,7 +7,7 @@ namespace Gameplay
     [Serializable]
     public class AppliedModifier
     {
-        public Character Caster { get; }
+        public Character Source { get; }
         public CharacterStats CharacterStats { get; }
         public Team Team { get; }
         public Weapon Weapon { get; }
@@ -29,9 +29,9 @@ namespace Gameplay
 
         public List<AppliedStatModifier> AppliedStatModifiers { get; private set; } = new();
         
-        public AppliedModifier(Character caster, CharacterStats characterStats, Team team, Weapon weapon, Character target, ModifierData modifierDataData, float applicationTime, float duration)
+        public AppliedModifier(Character source, CharacterStats characterStats, Team team, Weapon weapon, Character target, ModifierData modifierDataData, float applicationTime, float duration)
         {
-            Caster = caster;
+            Source = source;
             CharacterStats = characterStats; 
             Team = team;
             Weapon = weapon;
@@ -70,7 +70,7 @@ namespace Gameplay
         {
             foreach (var onTickAction in ModifierData.OnTickActionsOnCharacter)
             {
-                onTickAction.Execute(new WeaponActionExecutionData(Caster, CharacterStats, Team, Weapon), Target);
+                onTickAction.TryExecute(new WeaponActionExecutionData(Source, CharacterStats, Team, Weapon), Target);
             }
         }
     

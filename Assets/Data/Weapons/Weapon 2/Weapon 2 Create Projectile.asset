@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18fb9832c384378887547329d0ce8e2, type: 3}
   m_Name: Weapon 2 Create Projectile
   m_EditorClassIdentifier: 
+  <Requirement>k__BackingField: {fileID: 0}
   projectilePrefab: {fileID: 4046550042618500165, guid: 7353bd62cb1829342bb411ad15e0c5b5, type: 3}
   travelSpeed:
     variableType: 0
@@ -24,3 +25,4 @@ MonoBehaviour:
   onHitActions:
   - {fileID: 11400000, guid: c98e16cd68f4c004a9b1acedd42cfb17, type: 2}
   - {fileID: 11400000, guid: d6213faad7497594f87cf7d02360abe0, type: 2}
+  - {fileID: 11400000, guid: 3af731967d5721c42922681bbb3bba7c, type: 2}

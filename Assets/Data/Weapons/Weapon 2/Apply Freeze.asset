@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ceecdcb03f40a2ab5b2522f6483c91, type: 3}
+  m_Name: Apply Freeze
+  m_EditorClassIdentifier: 
+  <Requirement>k__BackingField: {fileID: 11400000, guid: 05b7cd940d704db40aee0796ceea3064, type: 2}
+  modifierData: {fileID: 11400000, guid: b2be53964c0327a40b2edfdc8cf0c47a, type: 2}
+  bindToWeapon: 1

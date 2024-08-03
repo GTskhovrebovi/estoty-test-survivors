@@ -13,7 +13,7 @@ namespace Gameplay
         [SerializeField] protected Variable travelDistance;
         [SerializeField] protected List<WeaponActionOnCharacter> onHitActions = new();
         
-        public override void Execute(WeaponActionExecutionData data)
+        protected override void Execute(WeaponActionExecutionData data)
         {
             // if (!data.Owner.HasAmmo) return;
             var spawnPoint = data.Weapon.SpawnPoint;

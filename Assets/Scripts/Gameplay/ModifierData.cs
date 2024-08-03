@@ -20,7 +20,8 @@ namespace Gameplay
         [SerializeField] private bool hasTicker;
         [SerializeField] private Variable tickInterval;
         [SerializeField] private List<WeaponActionOnCharacter> onTickActionsOnCharacter = new();
-        
+        [field: SerializeField] public ColorChangeEffectData ColorOverrideData { get; private set; }
+
         public bool HasDuration => hasDuration;
         public Variable Duration => duration;
         public bool HasTicker => hasTicker;

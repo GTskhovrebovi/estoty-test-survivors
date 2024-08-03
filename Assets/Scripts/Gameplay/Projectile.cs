@@ -75,7 +75,7 @@ namespace Gameplay
         private void ExecuteOnHitActions(Character character)
         {
             foreach (var onHitAction in _onHitActions) 
-                onHitAction.Execute(new WeaponActionExecutionData(Owner, CharacterStats, Team, Weapon), character);
+                onHitAction.TryExecute(new WeaponActionExecutionData(Owner, CharacterStats, Team, Weapon), character);
         }
         
         protected override void End()

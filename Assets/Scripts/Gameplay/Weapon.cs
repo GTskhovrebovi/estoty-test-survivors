@@ -9,6 +9,7 @@ namespace Gameplay
     {
         [SerializeField] private bool aimAtTarget;
         [SerializeField] private float aimRange = 10f;
+        [SerializeField] private StatType fireRate;
         [field: SerializeField] public Transform SpawnPoint { get; private set; }
         public WeaponData WeaponData { get; private set; }
         public Character Owner { get; private set; }
@@ -40,7 +41,7 @@ namespace Gameplay
                 RotateTowardsTarget();
             }
             
-            _remainingCooldown -= Time.deltaTime;
+            _remainingCooldown -= Time.deltaTime * Owner.CharacterStats.GetStat(fireRate).Value;
             _remainingCooldown = Mathf.Max(0, _remainingCooldown);
 
             TryUse();

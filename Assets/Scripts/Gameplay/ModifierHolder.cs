@@ -106,30 +106,12 @@ namespace Gameplay
             
             _modifiersToUpdate.Clear();
         }
-        
-        public AppliedModifier ApplyModifier(ModifierData modifierData, Character caster, CharacterStats characterStats, Team team, Weapon weapon, int numberOfStacks)
-        {
-            AppliedModifier appliedModifier = null;
-            if (modifierData.Stackable)
-            {
-                for (int i = 0; i < numberOfStacks; i++)
-                {
-                    appliedModifier = ApplyModifier(modifierData, caster, characterStats, team, weapon);
-                }
-            }
-            else
-            {
-                appliedModifier = ApplyModifier(modifierData, caster, characterStats, team, weapon);
-            }
-
-            return appliedModifier;
-        }
     
-        public AppliedModifier ApplyModifier(ModifierData modifierData, Character caster, CharacterStats characterStats, Team team, Weapon weapon)
+        public AppliedModifier ApplyModifier(ModifierData modifierData, Character source, CharacterStats characterStats, Team team, Weapon weapon)
         {
             if (!_character.Alive) return null;
 
-            var existingModifier = _appliedModifiers.FirstOrDefault(i => i.Caster == caster && i.ModifierData == modifierData);
+            var existingModifier = _appliedModifiers.FirstOrDefault(i => i.Source == source && i.ModifierData == modifierData);
             if (modifierData.Stackable)
             {
                 if (existingModifier != null)
@@ -162,12 +144,10 @@ namespace Gameplay
             
             AppliedModifier Apply()
             {
-                // Debug.Log($"{caster.gameObject.name} applied {modifier.name} on {gameObject.name}".Colorize(Color.cyan));
-
                 var modifierDuration = modifierData.HasDuration
                     ? modifierData.Duration.Value(characterStats)
                     : Mathf.Infinity;
-                var appliedModifier = new AppliedModifier(caster, characterStats, team, weapon, _character, modifierData, Time.time, modifierDuration)
+                var appliedModifier = new AppliedModifier(source, characterStats, team, weapon, _character, modifierData, Time.time, modifierDuration)
                 {
                     EndAction = RemoveAppliedModifier
                 };
@@ -197,7 +177,6 @@ namespace Gameplay
         
         private void RemoveAppliedModifier(AppliedModifier appliedModifier)
         {
-            // Debug.Log($"{appliedModifier.Modifier.name} Modifier Removed from {gameObject.name}".Colorize(Color.white));
             _appliedModifiers.Remove(appliedModifier);
             OnModifierRemove?.Invoke(appliedModifier);
             UpdateEffects();

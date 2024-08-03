@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Gameplay
@@ -10,6 +11,7 @@ namespace Gameplay
         [SerializeField] protected CameraController cameraController;
         [SerializeField] protected Transform spawnPoint;
         [SerializeField] protected Team playerTeam;
+        [SerializeField] protected RewardsManager rewardsManager;
 
         private Character _player;
 
@@ -23,6 +25,7 @@ namespace Gameplay
             _player = FindObjectOfType<CharacterFactory>().Spawn(playerData, playerTeam, spawnPoint.position);
             gameUI.Initialize(_player);
             cameraController.Initialize(_player);
+            rewardsManager.Initialize(_player);
             enemySpawner.Initialize(_player);
             enemySpawner.StartSpawning();
 

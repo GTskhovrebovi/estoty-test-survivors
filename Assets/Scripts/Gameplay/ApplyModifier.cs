@@ -10,7 +10,7 @@ namespace Gameplay
         [SerializeField] protected ModifierData modifierData;
         [SerializeField] private bool bindToWeapon;
 
-        public override void Execute(WeaponActionExecutionData data, Character character)
+        protected override void Execute(WeaponActionExecutionData data, Character character)
         {
             var appliedModifier = character.ModifierHolder.ApplyModifier(modifierData, data.Owner, data.CharacterStats, data.Team, data.Weapon);
             if (bindToWeapon)

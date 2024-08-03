@@ -10,6 +10,8 @@ namespace Gameplay
         [SerializeField] private Slider experienceSlider;
         [SerializeField] private TMP_Text levelText;
         [SerializeField] private TMP_Text killsText;
+        [SerializeField] private UpgradeInfoPopup upgradeInfoPopup;
+        [SerializeField] private RewardsManager rewardsManager;
 
         private Character _player;
 
@@ -28,10 +30,24 @@ namespace Gameplay
             _player.Health.OnHealthChanged += HandleHealthChange;
             _player.LevelingSystem.OnExperienceChange += HandleExperienceChange;
             _player.OnCharacterKill += HandleCharacterKill;
+            rewardsManager.OnRewardGrant += HandleRewardGrant;
         
             UpdateHealth();
             UpdateLevelState();
             UpdateKills();
+        }
+
+        private void HandleRewardGrant(IRewardAction rewardAction)
+        {
+            switch (rewardAction)
+            {
+                case AddUpgrade addUpgrade:
+                    upgradeInfoPopup.Show(addUpgrade);
+                    break;
+                case AddWeapon addWeapon:
+                    upgradeInfoPopup.Show(addWeapon);
+                    break;
+            }
         }
 
         private void HandleCharacterKill(Character _)
@@ -73,6 +89,7 @@ namespace Gameplay
                 _player.Health.OnHealthChanged -= HandleHealthChange;
                 _player.LevelingSystem.OnExperienceChange -= HandleExperienceChange;
                 _player.OnCharacterKill -= HandleCharacterKill;
+                rewardsManager.OnRewardGrant -= HandleRewardGrant;
             }
         }
     }

@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Gameplay
@@ -21,7 +20,6 @@ namespace Gameplay
         {
             if (Weapon != null) { return null; }
         
-            Debug.Log("Equipping Weapon:" + weaponData.WeaponName);
             Weapon = Object.Instantiate(weaponData.Weapon, _weaponUser.WeaponContainer);
             Weapon.Initialize(_character, _weaponUser, weaponData);
             return Weapon;

@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ceecdcb03f40a2ab5b2522f6483c91, type: 3}
-  m_Name: Weapon 2 Apply Modifier
+  m_Script: {fileID: 11500000, guid: b06e15ff66964604903ae180cab19133, type: 3}
+  m_Name: Freeze Color Change Data
   m_EditorClassIdentifier: 
-  modifierData: {fileID: 11400000, guid: 70a32997ed0c4c34baac945b8edaf3db, type: 2}
-  bindToWeapon: 1
+  <NewColor>k__BackingField: {r: 0, g: 0.8159847, b: 1, a: 1}

@@ -9,7 +9,7 @@ namespace Gameplay
     {
         [SerializeField] protected Variable damageVariable;
 
-        public override void Execute(WeaponActionExecutionData data, Character character)
+        protected override void Execute(WeaponActionExecutionData data, Character character)
         {
             if (!data.Team.IsEnemy(character.Team)) return;
             
