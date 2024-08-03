@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f866e6f3b66431a9ed7122dcb73f164, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  <CharacterName>k__BackingField: Player
+  <StartingWeapons>k__BackingField:
+  - {fileID: 11400000, guid: 28e124f2d8d907945a9ffef6025ef3d1, type: 2}
+  - {fileID: 11400000, guid: b8a5336c1bc368d409c208ec6984c570, type: 2}
+  <CharacterPrefab>k__BackingField: {fileID: 3802129132602507154, guid: 587c50995ae4b114c9b1738e18fcf273, type: 3}
+  <StatOverrides>k__BackingField: {fileID: 11400000, guid: 8b1052fa6532bbd43b4234c465bd2d1b, type: 2}

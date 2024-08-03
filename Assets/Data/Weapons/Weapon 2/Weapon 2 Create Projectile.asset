@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18fb9832c384378887547329d0ce8e2, type: 3}
+  m_Name: Weapon 2 Create Projectile
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 4046550042618500165, guid: 7353bd62cb1829342bb411ad15e0c5b5, type: 3}
+  travelSpeed:
+    variableType: 0
+    constantValue: 16
+    statType: {fileID: 0}
+  travelDistance:
+    variableType: 0
+    constantValue: 8
+    statType: {fileID: 0}
+  onHitActions:
+  - {fileID: 11400000, guid: c98e16cd68f4c004a9b1acedd42cfb17, type: 2}
+  - {fileID: 11400000, guid: d6213faad7497594f87cf7d02360abe0, type: 2}

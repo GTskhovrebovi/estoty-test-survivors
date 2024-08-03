@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4599a08f64f45e7b0be3be8c00fd49b, type: 3}
+  m_Name: Weapon 2
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: -205726582, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  <WeaponName>k__BackingField: Weapon 2
+  <Description>k__BackingField: Weapon 2 Description
+  <Weapon>k__BackingField: {fileID: -5385770634834302441, guid: e43e3e05e385e0149b33bf83d0085d5f, type: 3}
+  <HasCast>k__BackingField: 1
+  <CooldownVariable>k__BackingField:
+    variableType: 0
+    constantValue: 1
+    statType: {fileID: 0}
