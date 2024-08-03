@@ -63,6 +63,7 @@ namespace Gameplay
             _maxAmmoStat = CharacterStats.GetStat(maxAmmoStat);
             if (WeaponUser != null) WeaponUser.Initialize(startingWeapons);
             Alive = true;
+            _collider2D.enabled = true;
             Team = team;
             MaxAmmoAmount = Mathf.FloorToInt(_maxAmmoStat.Value);
             CurrentAmmoAmount = MaxAmmoAmount; 
@@ -106,6 +107,7 @@ namespace Gameplay
         private async void Die()
         {
             Alive = false;
+            _collider2D.enabled = false;
             animator.SetBool(Dead, true);
             OnDeath?.Invoke();
             

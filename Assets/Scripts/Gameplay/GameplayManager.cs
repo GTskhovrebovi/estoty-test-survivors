@@ -10,8 +10,8 @@ namespace Gameplay
         [SerializeField] protected CameraController cameraController;
         [SerializeField] protected Transform spawnPoint;
         [SerializeField] protected Team playerTeam;
-    
-        public Character Player { get; private set; }
+
+        private Character _player;
 
         private void Start()
         {
@@ -20,10 +20,20 @@ namespace Gameplay
 
         private void StartGame()
         {
-            Player = FindObjectOfType<CharacterFactory>().Spawn(playerData, playerTeam, spawnPoint.position);
-            gameUI.Initialize(Player);
-            cameraController.Initialize(Player);
-            enemySpawner.Initialize(Player);
+            _player = FindObjectOfType<CharacterFactory>().Spawn(playerData, playerTeam, spawnPoint.position);
+            gameUI.Initialize(_player);
+            cameraController.Initialize(_player);
+            enemySpawner.Initialize(_player);
+            enemySpawner.StartSpawning();
+
+            _player.OnDeath += HandlePlayerDeath;
+        }
+
+        private void HandlePlayerDeath()
+        {
+            _player.OnDeath -= HandlePlayerDeath;
+            
+            enemySpawner.StopSpawning();
         }
     }
 }

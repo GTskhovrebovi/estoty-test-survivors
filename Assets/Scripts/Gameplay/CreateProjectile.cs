@@ -20,7 +20,7 @@ namespace Gameplay
             
             var instantiatedProjectile = (Projectile) FindObjectOfType<WeaponObjectFactory>().GetWeaponObject(projectilePrefab);
             instantiatedProjectile.transform.position = spawnPoint.position;
-            instantiatedProjectile.transform.right = spawnPoint.TransformDirection(spawnPoint.right);
+            instantiatedProjectile.transform.right = spawnPoint.right;
             // data.Owner.SpendAmmo();
                 
             instantiatedProjectile.Initialize(

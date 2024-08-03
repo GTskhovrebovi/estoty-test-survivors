@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: loot.Array.data[3]
       value: 
       objectReference: {fileID: 4490080449527351407, guid: 7f2dc810e1e59894cbb8537e6d32bafa, type: 3}
+    - target: {fileID: 5813589878242127926, guid: 7bff3f6a74f449f468ca2bc4cff01ecc, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 8856add8b94040741b65a0a7c6a2aa11, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

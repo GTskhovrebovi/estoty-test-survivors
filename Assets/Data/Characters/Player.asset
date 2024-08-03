@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   <CharacterName>k__BackingField: Player
-  <StartingWeapons>k__BackingField:
-  - {fileID: 11400000, guid: 28e124f2d8d907945a9ffef6025ef3d1, type: 2}
-  - {fileID: 11400000, guid: b8a5336c1bc368d409c208ec6984c570, type: 2}
+  <StartingWeapons>k__BackingField: []
   <CharacterPrefab>k__BackingField: {fileID: 3802129132602507154, guid: 587c50995ae4b114c9b1738e18fcf273, type: 3}
   <StatOverrides>k__BackingField: {fileID: 11400000, guid: 8b1052fa6532bbd43b4234c465bd2d1b, type: 2}

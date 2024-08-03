@@ -48,8 +48,10 @@ namespace Gameplay
                 End();
         }
         
-        public virtual void End()
+        protected virtual void End()
         {
+            if (!IsActive) return;
+            IsActive = false;
             EndAction?.Invoke(this);
         }
     }

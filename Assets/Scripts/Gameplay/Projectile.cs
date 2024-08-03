@@ -78,7 +78,7 @@ namespace Gameplay
                 onHitAction.Execute(new WeaponActionExecutionData(Owner, CharacterStats, Team, Weapon), character);
         }
         
-        public override void End()
+        protected override void End()
         {
             LifeTime = InitialLifeTime;
             base.End();
@@ -100,7 +100,11 @@ namespace Gameplay
             for (var i = 0; i < size; i++)
             {
                 var hit = _hits[i];
-                if (IsActive) HandleCollision(hit.collider);
+                if (IsActive)
+                {
+                    HandleCollision(hit.collider);
+                    break;
+                }
             }
         }
         
