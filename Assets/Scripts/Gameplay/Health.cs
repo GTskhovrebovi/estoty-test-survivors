@@ -47,13 +47,12 @@ namespace Gameplay
         {
             var deltaTime = Time.time - _lastRegenerationTick;
             _lastRegenerationTick = Time.time;
-        
             _currentHealth = Mathf.Min(_currentHealth + _regenerationStat.Value * deltaTime, _totalHealth);
+            OnHealthChanged?.Invoke();
         }
 
         public void Heal(float amount, HealthChangeType healType)
         {
-            //Debug.Log($" {healType} Healing: {amount}".Colorize(Color.green));
             switch (healType)
             {
                 case HealthChangeType.Flat:
@@ -68,7 +67,6 @@ namespace Gameplay
                     throw new ArgumentOutOfRangeException(nameof(healType), healType, null);
             }
 
-            //OnHealTaken?.Invoke(amount);
         }
     
         private void ReactOnHealthStatChange()
@@ -76,7 +74,6 @@ namespace Gameplay
             var fraction = HealthFraction;
             _totalHealth = _healthStat.Value;
             _currentHealth = _totalHealth * fraction;
-            //OnTotalHealthChanged?.Invoke();
         }
 
         public void MakeHealthFull()

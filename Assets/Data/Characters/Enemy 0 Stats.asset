@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <BaseStats>k__BackingField:
   - <StatType>k__BackingField: {fileID: 11400000, guid: 2577abd4afcc0e049beb3688f0c926db, type: 2}
-    <Value>k__BackingField: 1000
+    <Value>k__BackingField: 100
   - <StatType>k__BackingField: {fileID: 11400000, guid: 9952a42e1f75b9945b4447f3ff701b70, type: 2}
     <Value>k__BackingField: 10

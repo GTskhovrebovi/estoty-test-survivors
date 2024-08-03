@@ -40,8 +40,11 @@ namespace Gameplay
         public event Action<Character> OnCharacterKill;
         public event Action<int> OnAmmoChange;
         public CharacterStats CharacterStats { get; private set; }
+        public Vector3 Center => _collider2D.bounds.center;
+        private CircleCollider2D _collider2D;
         protected virtual void Awake()
         {
+            _collider2D = GetComponent<CircleCollider2D>();
             CharacterStats = new CharacterStats();
             Health = GetComponent<Health>();
             ModifierHolder = GetComponent<ModifierHolder>();

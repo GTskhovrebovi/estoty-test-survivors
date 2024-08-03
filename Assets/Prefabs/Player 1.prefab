@@ -1,5 +1,88 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &102448161260612692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6107627401562125567}
+  - component: {fileID: 5565319253889685426}
+  - component: {fileID: 7960441768641987121}
+  m_Layer: 11
+  m_Name: Pick up picker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6107627401562125567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102448161260612692}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3477945177565267073}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &5565319253889685426
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102448161260612692}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3
+--- !u!114 &7960441768641987121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102448161260612692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596178cfd01647a4b7dda54ab55cffb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 3802129132602507154}
+  pickUpStatType: {fileID: 11400000, guid: c75c155d1d2802a4691629187986d8e1, type: 2}
+  pickUpTriggerCollider: {fileID: 5565319253889685426}
 --- !u!1 &831697436168506986
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +176,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 633502555434292646, guid: ece0e43a0f291a348ad8ef41d6e534ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2072487826286728107}
+    - targetCorrespondingSourceObject: {fileID: 633502555434292646, guid: ece0e43a0f291a348ad8ef41d6e534ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6107627401562125567}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2372470259317192013, guid: ece0e43a0f291a348ad8ef41d6e534ac, type: 3}
       insertIndex: -1
@@ -155,3 +241,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 633502555434292646, guid: ece0e43a0f291a348ad8ef41d6e534ac, type: 3}
   m_PrefabInstance: {fileID: 4075339307017638183}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3802129132602507154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 886474432826486453, guid: ece0e43a0f291a348ad8ef41d6e534ac, type: 3}
+  m_PrefabInstance: {fileID: 4075339307017638183}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757026867384067178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b2e3799b01cfa428612988019d854b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

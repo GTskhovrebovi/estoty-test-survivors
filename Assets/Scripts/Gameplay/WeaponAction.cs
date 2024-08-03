@@ -19,9 +19,4 @@ namespace Gameplay
     public abstract class WeaponActionOnCharacter : WeaponAction<Character>
     {
     }
-
-    [Serializable]
-    public abstract class WeaponActionOnPosition : WeaponAction<Vector3>
-    {
-    }
 }

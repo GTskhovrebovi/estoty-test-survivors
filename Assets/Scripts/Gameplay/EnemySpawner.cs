@@ -15,6 +15,12 @@ namespace Gameplay
         {
             _player = player;
             Spawn();
+            Spawn();
+            Spawn();
+            Spawn();
+            Spawn();
+            Spawn();
+            Spawn();
         }
         
         // private void Start()
