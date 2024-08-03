@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c0101246bf4b98892bbff6eeb5cc67, type: 3}
   m_Name: Max Ammo
   m_EditorClassIdentifier: 
-  <BaseValue>k__BackingField: 10
+  <BaseValue>k__BackingField: 40
   <StatName>k__BackingField: Max Ammo

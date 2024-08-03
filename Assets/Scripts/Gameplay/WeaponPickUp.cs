@@ -8,6 +8,7 @@ namespace Gameplay
 
         protected override void Consume(Character character)
         {
+            base.Consume(character);
             if (character.TryGetComponent<WeaponUser>(out var weaponUser))
             {
                 weaponUser.EquipWeapon(WeaponData);

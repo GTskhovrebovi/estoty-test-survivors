@@ -17,8 +17,8 @@ namespace Gameplay
 
         private void Update()
         {
-            _inputHorizontal = SimpleInput.GetAxis( horizontalAxis );
-            _inputVertical = SimpleInput.GetAxis( verticalAxis );
+            _inputHorizontal = SimpleInput.GetAxisRaw( horizontalAxis );
+            _inputVertical = SimpleInput.GetAxisRaw( verticalAxis );
 
             var movementDirection = new Vector2(_inputHorizontal, _inputVertical).normalized;
             _character.MovementDirection = movementDirection;

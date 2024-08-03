@@ -224,7 +224,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <Amount>k__BackingField: 10
+  <Amount>k__BackingField: 20
 --- !u!58 &274891564701977429
 CircleCollider2D:
   m_ObjectHideFlags: 0

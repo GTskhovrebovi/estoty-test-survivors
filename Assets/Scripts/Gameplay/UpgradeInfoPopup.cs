@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Gameplay
 {
+    // I usually use other tools for UI animations like: https://openupm.com/packages/com.brunomikoski.animationsequencer/
     public class UpgradeInfoPopup : MonoBehaviour
     {
         [SerializeField] private TMP_Text upgradeTypeText;

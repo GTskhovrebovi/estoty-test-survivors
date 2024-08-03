@@ -43,6 +43,7 @@ namespace Gameplay
         public event Action<Character> OnEndExistence;
         public event Action<Character> OnCharacterKill;
         public event Action<int> OnAmmoChange;
+        public event Action<int> OnMaxAmmoChange;
         public CharacterStats CharacterStats { get; private set; }
         public Vector3 Center => _collider2D.bounds.center;
         private CircleCollider2D _collider2D;
@@ -131,6 +132,7 @@ namespace Gameplay
         {
             MaxAmmoAmount = Mathf.FloorToInt(_maxAmmoStat.Value);
             CurrentAmmoAmount = Mathf.Clamp(CurrentAmmoAmount, 0, MaxAmmoAmount);
+            OnMaxAmmoChange?.Invoke(MaxAmmoAmount);
         }
         
         public void GrantAmmo(int amount)

@@ -20,7 +20,7 @@ MonoBehaviour:
     statType: {fileID: 0}
   travelDistance:
     variableType: 0
-    constantValue: 4
+    constantValue: 8
     statType: {fileID: 0}
   onHitActions:
   - {fileID: 11400000, guid: 5bb4b1326c8a1364a8c2101d9e14ad95, type: 2}

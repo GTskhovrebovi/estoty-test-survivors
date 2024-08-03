@@ -15,13 +15,16 @@ namespace Gameplay
         
         protected override void Execute(WeaponActionExecutionData data)
         {
-            // if (!data.Owner.HasAmmo) return;
+            if (!data.Owner.HasAmmo) return;
+            if (data.Weapon.Target == null) return;
+            
+            data.Owner.SpendAmmo();
+            
             var spawnPoint = data.Weapon.SpawnPoint;
             
             var instantiatedProjectile = (Projectile) FindObjectOfType<WeaponObjectFactory>().GetWeaponObject(projectilePrefab);
             instantiatedProjectile.transform.position = spawnPoint.position;
             instantiatedProjectile.transform.right = spawnPoint.right;
-            // data.Owner.SpendAmmo();
                 
             instantiatedProjectile.Initialize(
                 data.Owner,

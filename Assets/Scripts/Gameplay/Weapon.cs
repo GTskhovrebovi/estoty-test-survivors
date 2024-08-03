@@ -14,11 +14,11 @@ namespace Gameplay
         public WeaponData WeaponData { get; private set; }
         public Character Owner { get; private set; }
         public WeaponUser WeaponUser { get;  private set; }
+        public Character Target { get;  private set; }
         private Collider2D[] _results = new Collider2D[20];
         private float _remainingCooldown;
         private readonly Action<Weapon> _castCallback;
         private readonly List<AppliedModifier> _bindedModifiers = new();
-        private Character _target;
 
         public void BindModifier(AppliedModifier appliedModifier)
         {
@@ -64,7 +64,7 @@ namespace Gameplay
         public void FindTarget()
         {
             var closestDistance = Mathf.Infinity;
-            _target = null;
+            Target = null;
 
             var size = Physics2D.OverlapCircleNonAlloc(transform.position, aimRange, _results, Layers.CharacterLayerMask);
 
@@ -78,15 +78,15 @@ namespace Gameplay
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
-                    _target = character;
+                    Target = character;
                 }
             }
         }
         
         private void RotateTowardsTarget()
         {
-            if (_target == null) return;
-            transform.right = _target.transform.position - transform.position;
+            if (Target == null) return;
+            transform.right = Target.transform.position - transform.position;
         }
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4046550042618500165, guid: 7353bd62cb1829342bb411ad15e0c5b5, type: 3}
   travelSpeed:
     variableType: 0
-    constantValue: 16
+    constantValue: 20
     statType: {fileID: 0}
   travelDistance:
     variableType: 0
