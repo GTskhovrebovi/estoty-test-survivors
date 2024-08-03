@@ -21,11 +21,6 @@ namespace Gameplay
             UpdateRange();
             _pickUpStat.OnStatChanged += UpdateRange;
         }
-        
-        // private void OnDisable()
-        // {
-        //     _pickUpStat.OnStatChanged -= UpdateRange;
-        // }
 
         private void UpdateRange()
         {

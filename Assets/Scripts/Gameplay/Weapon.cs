@@ -10,6 +10,7 @@ namespace Gameplay
         [SerializeField] private bool aimAtTarget;
         [SerializeField] private float aimRange = 10f;
         [SerializeField] private StatType fireRate;
+        [SerializeField] private Animator animator;
         [field: SerializeField] public Transform SpawnPoint { get; private set; }
         public WeaponData WeaponData { get; private set; }
         public Character Owner { get; private set; }
@@ -19,6 +20,7 @@ namespace Gameplay
         private float _remainingCooldown;
         private readonly Action<Weapon> _castCallback;
         private readonly List<AppliedModifier> _bindedModifiers = new();
+        private static readonly int UseHash = Animator.StringToHash("Use");
 
         public void BindModifier(AppliedModifier appliedModifier)
         {
@@ -58,7 +60,7 @@ namespace Gameplay
         protected virtual void Use()
         {
             _remainingCooldown = WeaponData.CooldownVariable.Value(Owner.CharacterStats);
-            _castCallback?.Invoke(this);
+            animator.SetTrigger(UseHash);
         }
         
         public void FindTarget()

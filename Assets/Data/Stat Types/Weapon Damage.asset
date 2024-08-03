@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13081348dde741459584fcf93ff1bd86, type: 3}
-  m_Name: Weapon 2 Deal Damage
+  m_Script: {fileID: 11500000, guid: e7c0101246bf4b98892bbff6eeb5cc67, type: 3}
+  m_Name: Weapon Damage
   m_EditorClassIdentifier: 
-  damageVariable:
-    variableType: 0
-    constantValue: 10
-    statType: {fileID: 0}
+  <BaseValue>k__BackingField: 40
+  <StatName>k__BackingField: Damage

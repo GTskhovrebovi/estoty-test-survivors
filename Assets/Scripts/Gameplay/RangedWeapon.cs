@@ -7,8 +7,9 @@ namespace Gameplay
         [SerializeField] private WeaponAction shootAction;
         protected override void Use()
         {
-            base.Use();
+            if (Target == null) return;
             shootAction.TryExecute(new WeaponActionExecutionData(Owner, Owner.CharacterStats, Owner.Team, this));
+            base.Use();
         }
     }
 }
