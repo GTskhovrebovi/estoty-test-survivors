@@ -40,7 +40,7 @@ namespace Gameplay
             SceneManager.MoveGameObjectToScene(pooledCharacter.gameObject, SceneManager.GetActiveScene());
             pooledCharacter.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
             pooledCharacter.RigidBody.position = spawnPosition;
-            pooledCharacter.Initialize(characterData.StatOverrides, team, characterData.StartingWeapons);
+            pooledCharacter.Initialize(characterData.BaseStats, team, characterData.StartingWeapons);
             
             return pooledCharacter;
         }

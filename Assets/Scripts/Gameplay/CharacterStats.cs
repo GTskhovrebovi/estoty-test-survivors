@@ -8,10 +8,10 @@ namespace Gameplay
     {
         public Dictionary<StatType, Stat> Stats { get; private set; } = new();
     
-        public void Initialize(CharacterStatOverrides statOverrides)
+        public void Initialize(List<CharacterStatOverride> baseStats)
         {
             Stats = new Dictionary<StatType, Stat>();
-            AddStats(statOverrides.BaseStats);
+            AddStats(baseStats);
         }
 
         public Stat GetStat(StatType statType)

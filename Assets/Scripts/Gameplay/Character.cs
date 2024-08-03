@@ -47,6 +47,7 @@ namespace Gameplay
         public CharacterStats CharacterStats { get; private set; }
         public Vector3 Center => _collider2D.bounds.center;
         private CircleCollider2D _collider2D;
+        private Vector3 _characterScale;
         protected void Awake()
         {
             _collider2D = GetComponent<CircleCollider2D>();
@@ -59,12 +60,13 @@ namespace Gameplay
             LevelingSystem = GetComponent<LevelingSystem>();
             WeaponActionRequirementHolder = GetComponent<WeaponActionRequirementHolder>();
             _movementStat = CharacterStats.GetStat(movementSpeedStat);
+            _characterScale = graphicsSpriteRenderer.transform.localScale;
         }
 
-        public void Initialize(CharacterStatOverrides statOverrides, Team team, List<WeaponData> startingWeapons)
+        public void Initialize(List<CharacterStatOverride> baseStats, Team team, List<WeaponData> startingWeapons)
         {
             CharacterStats = new CharacterStats();
-            CharacterStats.Initialize(statOverrides);
+            CharacterStats.Initialize(baseStats);
             Health.Initialize(CharacterStats.GetStat(healthStat), CharacterStats.GetStat(regenerationStat), HandleHealthReachZero);
             _movementStat = CharacterStats.GetStat(movementSpeedStat);
             _maxAmmoStat = CharacterStats.GetStat(maxAmmoStat);
@@ -72,6 +74,7 @@ namespace Gameplay
             Alive = true;
             _collider2D.enabled = true;
             Team = team;
+            
             MaxAmmoAmount = Mathf.FloorToInt(_maxAmmoStat.Value);
             CurrentAmmoAmount = MaxAmmoAmount; 
             _maxAmmoStat.OnStatChanged += HandleMaxAmmoChange;
@@ -176,7 +179,7 @@ namespace Gameplay
             }
 
             var flipX = FacingDirection.x >= 0 ? 1 : -1;
-            graphics.transform.localScale = new Vector3(flipX, 1, 1);
+            graphics.transform.localScale = Vector3.Scale(_characterScale, new Vector3(flipX, 1, 1));
             animator.SetBool(Running, MovementDirection != Vector2.zero);
         }
     }

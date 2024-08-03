@@ -15,4 +15,8 @@ MonoBehaviour:
   <CharacterName>k__BackingField: Enemy 0
   <StartingWeapons>k__BackingField: []
   <CharacterPrefab>k__BackingField: {fileID: 4712611398817508487, guid: fc79221d389d67940b4148794836bfd2, type: 3}
-  <StatOverrides>k__BackingField: {fileID: 11400000, guid: 59910a6b9bc39eb43856efb401d9149e, type: 2}
+  <BaseStats>k__BackingField:
+  - <StatType>k__BackingField: {fileID: 11400000, guid: 2577abd4afcc0e049beb3688f0c926db, type: 2}
+    <Value>k__BackingField: 100
+  - <StatType>k__BackingField: {fileID: 11400000, guid: 9952a42e1f75b9945b4447f3ff701b70, type: 2}
+    <Value>k__BackingField: 10

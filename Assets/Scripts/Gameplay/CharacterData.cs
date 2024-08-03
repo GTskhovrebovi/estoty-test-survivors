@@ -11,6 +11,13 @@ namespace Gameplay
         [field: SerializeField] public string CharacterName { get; private set; }
         [field: SerializeField] public List<WeaponData> StartingWeapons { get; private set; }
         [field: SerializeField] public Character CharacterPrefab { get; private set; }
-        [field: SerializeField] public CharacterStatOverrides StatOverrides { get; private set; }
+        [field: SerializeField] public List<CharacterStatOverride> BaseStats { get; private set; }
+    }
+    
+    [Serializable]
+    public class CharacterStatOverride
+    {
+        [field: SerializeField] public StatType StatType { get; private set; }
+        [field: SerializeField] public float Value { get; private set; }
     }
 }
