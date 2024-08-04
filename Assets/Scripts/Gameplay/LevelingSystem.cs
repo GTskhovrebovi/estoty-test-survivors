@@ -7,23 +7,23 @@ namespace Gameplay
     {
         private LevelState _levelState;
         private int _totalExperience;
-        
+
         public LevelState LevelState => _levelState;
-        
+
         public event Action OnExperienceChange;
         public event Action<int> OnLevelUp;
-        
-        protected  void Awake()
+
+        protected void Awake()
         {
             SetExperience(0);
         }
-        
+
         public void GrantExperience(int amount)
         {
             _totalExperience += amount;
             UpdateLevelState();
         }
-        
+
         public void GrantLevel()
         {
             GrantExperience(LevelState.TotalExperienceForNextLevel - LevelState.Experience);
@@ -35,7 +35,7 @@ namespace Gameplay
             _totalExperience = amount;
             UpdateLevelState();
         }
-        
+
         private void UpdateLevelState()
         {
             var oldLevelState = _levelState;
@@ -46,12 +46,12 @@ namespace Gameplay
                 OnLevelUp?.Invoke(_levelState.Level - oldLevelState.Level);
             }
         }
-        
+
         private static LevelState CalculateLevelState(int totalExperience)
         {
             var experienceLeft = totalExperience;
             var currentLevel = 1;
-            
+
             while (true)
             {
                 var experienceForNextLevel = ExperienceForNextLevel(currentLevel);
@@ -76,7 +76,7 @@ namespace Gameplay
             return 100 + 40 * level + 10 * level * level;
         }
     }
-    
+
     [Serializable]
     public struct LevelState
     {

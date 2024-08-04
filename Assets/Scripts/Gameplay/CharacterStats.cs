@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Gameplay.ModifierSystem;
 
 namespace Gameplay
 {
@@ -7,7 +8,7 @@ namespace Gameplay
     public class CharacterStats
     {
         public Dictionary<StatType, Stat> Stats { get; private set; } = new();
-    
+
         public void Initialize(List<CharacterStatOverride> baseStats)
         {
             Stats = new Dictionary<StatType, Stat>();
@@ -22,19 +23,20 @@ namespace Gameplay
                 stat = new Stat(statType.BaseValue);
                 Stats.Add(statType, stat);
             }
+
             return stat;
         }
-    
+
         public string GetStatValue(StatType statType)
         {
             return GetStat(statType).Value.ToString();
         }
-    
+
         public void AddStat(StatType statType)
         {
             if (!Stats.ContainsKey(statType)) Stats.Add(statType, new Stat(statType.BaseValue));
         }
-    
+
         public void AddStat(CharacterStatOverride statOverride)
         {
             if (Stats.ContainsKey(statOverride.StatType)) return;
@@ -43,12 +45,12 @@ namespace Gameplay
 
         public void AddStats(List<StatType> stats)
         {
-            foreach (var statType  in stats)
+            foreach (var statType in stats)
             {
                 AddStat(statType);
             }
         }
-    
+
         private void AddStats(List<CharacterStatOverride> characterStatOverrides)
         {
             foreach (var statOverride in characterStatOverrides)
@@ -62,7 +64,7 @@ namespace Gameplay
             var appliedStatModifier = GetStat(statModifier.StatType).ApplyModifier(statModifier, source);
             return appliedStatModifier;
         }
-    
+
         public List<AppliedStatModifier> ApplyModifiers(IEnumerable<StatModifier> statModifiers, object source)
         {
             var appliedModifiers = new List<AppliedStatModifier>();

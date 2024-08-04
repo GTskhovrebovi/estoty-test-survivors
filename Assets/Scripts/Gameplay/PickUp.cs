@@ -14,10 +14,7 @@ namespace Gameplay
         [SerializeField] private AnimationCurve dropHeightCurve;
         [SerializeField] private float dropHeight;
         [SerializeField] private AnimationCurve pickUpAfterDropCurve;
-
-        public Action<PickUp> EndAction { get; set; }
-        public bool CanBePicked { get; private set; }
-
+        
         private Collider2D _collider;
         private bool _inDropAnimation;
         private bool _shouldBePickedAfterDrop;
@@ -25,6 +22,9 @@ namespace Gameplay
         private Vector2 _startPosition;
         private Vector2 _endPosition;
         private float _startTime;
+        
+        public bool CanBePicked { get; private set; }
+        public Action<PickUp> EndAction { get; set; }
 
         private void Awake()
         {

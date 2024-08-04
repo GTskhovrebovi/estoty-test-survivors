@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Gameplay
 {
-    [CreateAssetMenu(fileName = "New Stat", menuName = "Stat", order = 1)]
+    [CreateAssetMenu(fileName = "New Stat", menuName = "Gameplay/Stat", order = 1)]
     public class StatType : ScriptableObject
     {
         [field: SerializeField] public float BaseValue { get; private set; }

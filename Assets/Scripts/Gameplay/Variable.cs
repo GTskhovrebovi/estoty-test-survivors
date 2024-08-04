@@ -26,5 +26,10 @@ namespace Gameplay
             };
     }
 
-    public enum VariableType{Constant, Variable, Expression}
+    public enum VariableType
+    {
+        Constant,
+        Variable,
+        Expression
+    }
 }

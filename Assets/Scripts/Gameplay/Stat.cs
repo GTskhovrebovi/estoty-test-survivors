@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Gameplay.ModifierSystem;
 
 namespace Gameplay
 {
@@ -9,11 +10,11 @@ namespace Gameplay
     {
         private float _baseValue;
         private readonly List<AppliedStatModifier> _appliedStatModifiers = new();
-    
+
         public float Value { get; private set; }
 
         public event Action OnStatChanged;
-    
+
         public Stat(float baseValue)
         {
             _baseValue = baseValue;
@@ -31,32 +32,38 @@ namespace Gameplay
         {
             var baseValue = _baseValue;
 
-            var setModifiers = _appliedStatModifiers.Where(m => m.StatModifier.ModifierType == StatModifierType.Set).ToList();
+            var setModifiers = _appliedStatModifiers.Where(m => m.StatModifier.ModifierType == StatModifierType.Set)
+                .ToList();
             if (setModifiers.Any())
             {
                 Value = setModifiers.OrderByDescending(i => i.StatModifier.Priority).First().StatModifier.Value;
             }
-        
-            var overrideModifiers = _appliedStatModifiers.Where(m => m.StatModifier.ModifierType == StatModifierType.Override).ToList();
+
+            var overrideModifiers = _appliedStatModifiers
+                .Where(m => m.StatModifier.ModifierType == StatModifierType.Override).ToList();
             if (overrideModifiers.Any())
             {
-                baseValue = overrideModifiers.OrderByDescending(i => i.StatModifier.Priority).First().StatModifier.Value;
+                baseValue = overrideModifiers.OrderByDescending(i => i.StatModifier.Priority).First().StatModifier
+                    .Value;
             }
-        
+
             float totalFlat = 0;
-            foreach (var modifier in _appliedStatModifiers.Where(m => m.StatModifier.ModifierType == StatModifierType.Flat))
+            foreach (var modifier in _appliedStatModifiers.Where(m =>
+                         m.StatModifier.ModifierType == StatModifierType.Flat))
             {
                 totalFlat += modifier.StatModifier.Value;
             }
-        
+
             float totalPercentAdd = 0;
-            foreach (var modifier in _appliedStatModifiers.Where(m => m.StatModifier.ModifierType == StatModifierType.PercentAdd))
+            foreach (var modifier in _appliedStatModifiers.Where(m =>
+                         m.StatModifier.ModifierType == StatModifierType.PercentAdd))
             {
                 totalPercentAdd += modifier.StatModifier.Value / 100;
             }
-        
+
             float totalPercentMult = 1;
-            foreach (var modifier in _appliedStatModifiers.Where(m => m.StatModifier.ModifierType == StatModifierType.PercentMult))
+            foreach (var modifier in _appliedStatModifiers.Where(m =>
+                         m.StatModifier.ModifierType == StatModifierType.PercentMult))
             {
                 totalPercentMult *= 1 + (modifier.StatModifier.Value / 100);
             }
@@ -70,14 +77,14 @@ namespace Gameplay
 
         public void RemoveModifiersFromSource(object source)
         {
-            for (int i = _appliedStatModifiers.Count-1; i >= 0; i--)
+            for (int i = _appliedStatModifiers.Count - 1; i >= 0; i--)
             {
                 var appliedStatModifier = _appliedStatModifiers[i];
                 if (appliedStatModifier.Source != source) continue;
                 _appliedStatModifiers.Remove(appliedStatModifier);
                 appliedStatModifier.OnValueChange -= HandleModifierValueChange;
             }
-        
+
             CalculateFinalValue();
             OnStatChanged?.Invoke();
         }

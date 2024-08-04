@@ -9,36 +9,30 @@ namespace Gameplay
     {
         private Dictionary<CharacterData, ObjectPool<Character>> _characterObjectPools = new();
         private Character.Factory _characterFactory;
-        
+
         [Inject]
         public void Construct(Character.Factory characterFactory)
         {
             _characterFactory = characterFactory;
         }
-        
+
         private void CreatePoolForCharacter(CharacterData characterData)
         {
             _characterObjectPools.Add(characterData, new ObjectPool<Character>(
                 () =>
                 {
                     var instantiatedCharacter = _characterFactory.Create(characterData.CharacterPrefab.gameObject);
-                    instantiatedCharacter.OnEndExistence += i =>_characterObjectPools[characterData].Release(i);
+                    instantiatedCharacter.OnEndExistence += i => _characterObjectPools[characterData].Release(i);
                     return instantiatedCharacter;
                 },
-                i =>
-                {
-                    i.gameObject.SetActive(true);
-                },
-                i =>
-                {
-                    i.gameObject.SetActive(false);
-                },
+                i => { i.gameObject.SetActive(true); },
+                i => { i.gameObject.SetActive(false); },
                 i => Destroy(i.gameObject),
                 true,
                 400
             ));
         }
-        
+
         public Character Spawn(CharacterData characterData, Team team, Vector3 spawnPosition)
         {
             if (!_characterObjectPools.ContainsKey(characterData)) CreatePoolForCharacter(characterData);
@@ -47,7 +41,7 @@ namespace Gameplay
             pooledCharacter.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
             pooledCharacter.RigidBody.position = spawnPosition;
             pooledCharacter.Initialize(characterData.BaseStats, team, characterData.StartingWeapons);
-            
+
             return pooledCharacter;
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using Gameplay.UI;
 using UnityEngine;
 using Zenject;
 
@@ -16,12 +17,13 @@ namespace Gameplay
 
         private Character _player;
         private CharacterFactory _characterFactory;
-        
+
         [Inject]
         public void Construct(CharacterFactory characterFactory)
         {
             _characterFactory = characterFactory;
         }
+
         private void Start()
         {
             StartGame();
@@ -42,7 +44,7 @@ namespace Gameplay
         private void HandlePlayerDeath()
         {
             _player.OnDeath -= HandlePlayerDeath;
-            
+
             enemySpawner.StopSpawning();
         }
     }

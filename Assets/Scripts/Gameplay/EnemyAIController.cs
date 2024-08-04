@@ -7,11 +7,12 @@ namespace Gameplay
     {
         private Character _character;
         private Character _targetCharacter;
-        
+
         private void Awake()
         {
             _character = GetComponent<Character>();
         }
+
         public void SetTarget(Character character)
         {
             _targetCharacter = character;
@@ -31,7 +32,8 @@ namespace Gameplay
             }
             else
             {
-                _character.MovementDirection = (_targetCharacter.transform.position - _character.transform.position).normalized;
+                _character.MovementDirection =
+                    (_targetCharacter.transform.position - _character.transform.position).normalized;
             }
         }
     }

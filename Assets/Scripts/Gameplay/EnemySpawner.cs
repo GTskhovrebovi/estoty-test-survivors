@@ -21,7 +21,7 @@ namespace Gameplay
             _characterFactory = characterFactory;
             _settings = settings;
         }
-        
+
         public void Initialize(Character player)
         {
             _player = player;
@@ -31,7 +31,7 @@ namespace Gameplay
         {
             if (_player == null) return;
             if (_spawning) return;
-            
+
             _currentSpawnInterval = _settings.initialSpawnInterval;
             _timeSinceLastSpawn = 0f;
             _spawning = true;
@@ -46,7 +46,7 @@ namespace Gameplay
         {
             CheckForSpawn();
         }
-        
+
         private void CheckForSpawn()
         {
             if (!_spawning) return;
@@ -56,34 +56,34 @@ namespace Gameplay
             {
                 Spawn(_player);
                 _timeSinceLastSpawn = 0f;
-                _currentSpawnInterval = Mathf.Max(_currentSpawnInterval - _settings.spawnIntervalDecrease, _settings.minimumSpawnInterval);
+                _currentSpawnInterval = Mathf.Max(_currentSpawnInterval - _settings.spawnIntervalDecrease,
+                    _settings.minimumSpawnInterval);
             }
         }
-        
+
         public void Spawn(Character player)
         {
             if (_settings.enemyTypes == null || _settings.enemyTypes.Count == 0) return;
 
             var randomIndex = Random.Range(0, _settings.enemyTypes.Count);
             var randomEnemy = _settings.enemyTypes[randomIndex];
-            
+
             var angle = Random.Range(0f, Mathf.PI * 2);
             var x = _settings.spawnRadius * Mathf.Cos(angle);
             var y = _settings.spawnRadius * Mathf.Sin(angle);
             var spawnPosition = new Vector3(x, y, 0);
-            
-            var spawnedEnemy = _characterFactory.Spawn(randomEnemy, _settings.enemyTeam, player.transform.position + spawnPosition);
+
+            var spawnedEnemy = _characterFactory.Spawn(randomEnemy, _settings.enemyTeam,
+                player.transform.position + spawnPosition);
             if (spawnedEnemy.TryGetComponent<EnemyAIController>(out var characterBehaviorController))
             {
                 characterBehaviorController.SetTarget(_player);
             }
         }
-        
+
         [Serializable]
         public class Settings
         {
-            
-            
             [SerializeField] public List<CharacterData> enemyTypes;
             [SerializeField] public float spawnRadius;
             [SerializeField] public Team enemyTeam;

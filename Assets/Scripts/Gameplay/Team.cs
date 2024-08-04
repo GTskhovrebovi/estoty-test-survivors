@@ -8,7 +8,7 @@ namespace Gameplay
     {
         [SerializeField] private List<Team> alliedTeams;
         [SerializeField] private List<Team> enemyTeams;
-    
+
         public List<Team> AlliedTeams => alliedTeams;
         public List<Team> EnemyTeams => enemyTeams;
 

@@ -8,17 +8,18 @@ namespace Gameplay
         private float _totalHealth;
         private float _currentHealth;
         private float _lastRegenerationTick;
-    
+
         private Stat _healthStat;
         private Stat _regenerationStat;
-    
+
         public float TotalHealth => _totalHealth;
         public float CurrentHealth => _currentHealth;
         public float HealthFraction => _currentHealth / _totalHealth;
-    
+
         public event Action OnHealthChanged;
         private Action _deathCallback;
         private bool _alive;
+
         private void Awake()
         {
             _lastRegenerationTick = Time.time;
@@ -27,7 +28,7 @@ namespace Gameplay
         public void Initialize(Stat healthStat, Stat regenerationStat, Action deathCallback)
         {
             if (_healthStat != null) _healthStat.OnStatChanged -= ReactOnHealthStatChange;
-        
+
             _healthStat = healthStat;
             _regenerationStat = regenerationStat;
             _totalHealth = _healthStat.Value;
@@ -41,7 +42,7 @@ namespace Gameplay
         {
             _currentHealth = Mathf.Max(0, _currentHealth - damage);
             OnHealthChanged?.Invoke();
-            
+
             if (_currentHealth == 0)
             {
                 _alive = false;
@@ -74,9 +75,8 @@ namespace Gameplay
                 default:
                     throw new ArgumentOutOfRangeException(nameof(healType), healType, null);
             }
-
         }
-    
+
         private void ReactOnHealthStatChange()
         {
             if (!_alive) return;

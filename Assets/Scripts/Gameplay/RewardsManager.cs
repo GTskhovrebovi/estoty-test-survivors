@@ -1,4 +1,5 @@
 using System;
+using Installers;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -12,16 +13,16 @@ namespace Gameplay
         private Character _character;
         private LevelingSystem _levelingSystem;
         private int _currentNumberOfLevels;
-        
+
         public Action<IRewardAction> OnRewardGrant;
-        
+
         [Inject]
         public void Construct(WeaponLibrary weaponLibrary, UpgradeLibrary upgradeLibrary)
         {
             _weaponLibrary = weaponLibrary;
             _upgradeLibrary = upgradeLibrary;
         }
-        
+
         public void Initialize(Character player)
         {
             _character = player;
@@ -52,14 +53,14 @@ namespace Gameplay
             reward.Execute(_character);
             OnRewardGrant?.Invoke(reward);
         }
-        
+
         private IRewardAction GenerateRandomReward()
         {
             IRewardAction generatedRewards;
-            
+
             var weaponSlotsFull = _character.WeaponUser.WeaponSlotsFull;
             var newWeapon = Random.value < 0.4f && !weaponSlotsFull;
-            
+
             if (newWeapon)
             {
                 var weaponData = _weaponLibrary.Weapons[Random.Range(0, _weaponLibrary.Weapons.Count)];
@@ -70,7 +71,7 @@ namespace Gameplay
                 var upgrade = _upgradeLibrary.Upgrades[Random.Range(0, _upgradeLibrary.Upgrades.Count)];
                 generatedRewards = new AddUpgrade(upgrade);
             }
-            
+
             return generatedRewards;
         }
     }

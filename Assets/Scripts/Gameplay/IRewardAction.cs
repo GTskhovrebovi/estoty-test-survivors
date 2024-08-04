@@ -1,4 +1,6 @@
 using System;
+using Gameplay.UpgradeSystem;
+using Gameplay.WeaponSystem;
 using UnityEngine;
 
 namespace Gameplay
@@ -7,7 +9,7 @@ namespace Gameplay
     {
         public void Execute(Character character);
     }
-    
+
     [Serializable]
     public class AddWeapon : IRewardAction
     {
@@ -23,7 +25,7 @@ namespace Gameplay
             character.WeaponUser.EquipWeapon(WeaponData);
         }
     }
-    
+
     [Serializable]
     public class AddUpgrade : IRewardAction
     {

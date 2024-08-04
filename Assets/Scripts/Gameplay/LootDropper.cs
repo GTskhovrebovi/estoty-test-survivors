@@ -11,13 +11,13 @@ namespace Gameplay
 
         private Character _character;
         private PickUpFactory _pickUpFactory;
-        
+
         [Inject]
         public void Construct(PickUpFactory pickUpFactory)
         {
             _pickUpFactory = pickUpFactory;
         }
-        
+
         private void Awake()
         {
             _character = GetComponent<Character>();
@@ -40,7 +40,7 @@ namespace Gameplay
                 DropLoot();
             }
         }
-        
+
         private void DropLoot()
         {
             //TODO: implement drop chances 
@@ -49,10 +49,10 @@ namespace Gameplay
             {
                 if (Random.value > 0.5f) lootToDrop.Add(loot);
             }
-            
+
             var numberOfItems = lootToDrop.Count;
             var lootDropRadius = Mathf.Pow(numberOfItems, 0.5f) - 1;
-            
+
             foreach (var pickUp in lootToDrop)
             {
                 var dropPosition = Random.insideUnitCircle.normalized * (Random.value * lootDropRadius);
