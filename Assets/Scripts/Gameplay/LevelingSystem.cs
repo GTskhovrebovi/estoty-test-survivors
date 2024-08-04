@@ -73,7 +73,7 @@ namespace Gameplay
 
         public static int ExperienceForNextLevel(int level)
         {
-            return 100 + 40 * level + 10 * level * level;
+            return 100 + 10 * level;
         }
     }
 

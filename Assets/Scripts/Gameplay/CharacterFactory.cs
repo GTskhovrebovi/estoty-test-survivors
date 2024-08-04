@@ -21,7 +21,7 @@ namespace Gameplay
             _characterObjectPools.Add(characterData, new ObjectPool<Character>(
                 () =>
                 {
-                    var instantiatedCharacter = _characterFactory.Create(characterData.CharacterPrefab.gameObject);
+                    var instantiatedCharacter = _characterFactory.Create(characterData.CharacterPrefab);
                     instantiatedCharacter.OnEndExistence += i => _characterObjectPools[characterData].Release(i);
                     return instantiatedCharacter;
                 },

@@ -14,7 +14,13 @@ namespace Gameplay.WeaponSystem.WeaponActions
         [SerializeField] protected Variable travelDistance;
         [SerializeField] protected List<WeaponActionOnCharacter> onHitActions = new();
 
-        protected override void Execute(WeaponActionExecutionData data, DiContainer _container)
+        [Inject]
+        public void Construct(WeaponObjectFactory weaponObjectFactory)
+        {
+            Debug.Log("INJECT");
+        }
+        
+        protected override void Execute(WeaponActionExecutionData data, GameplayContext context)
         {
             if (!data.Owner.HasAmmo) return;
             if (data.Weapon.Target == null) return;
@@ -22,7 +28,7 @@ namespace Gameplay.WeaponSystem.WeaponActions
             data.Owner.SpendAmmo();
 
             var spawnPoint = data.Weapon.SpawnPoint;
-            var weaponObjectFactory = _container.Resolve<WeaponObjectFactory>();
+            var weaponObjectFactory = context.WeaponObjectFactory;
             var instantiatedProjectile = (Projectile)weaponObjectFactory.GetWeaponObject(projectilePrefab);
             instantiatedProjectile.transform.position = spawnPoint.position;
             instantiatedProjectile.transform.right = spawnPoint.right;

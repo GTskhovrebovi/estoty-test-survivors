@@ -15,12 +15,12 @@ namespace Gameplay.WeaponSystem.WeaponActions
                     || (Requirement != null && character.WeaponActionRequirementHolder.HasRequirement(Requirement)));
         }
 
-        public void TryExecute(WeaponActionExecutionData data, DiContainer container)
+        public void TryExecute(WeaponActionExecutionData data, GameplayContext context)
         {
-            if (CanExecute(data.Owner)) Execute(data, container);
+            if (CanExecute(data.Owner)) Execute(data, context);
         }
 
-        protected abstract void Execute(WeaponActionExecutionData data, DiContainer container);
+        protected abstract void Execute(WeaponActionExecutionData data, GameplayContext context);
     }
 
     [Serializable]
@@ -34,12 +34,12 @@ namespace Gameplay.WeaponSystem.WeaponActions
                     || (Requirement != null && character.WeaponActionRequirementHolder.HasRequirement(Requirement)));
         }
 
-        public void TryExecute(WeaponActionExecutionData data, DiContainer container, T arg)
+        public void TryExecute(WeaponActionExecutionData data, GameplayContext context, T arg)
         {
-            if (CanExecute(data.Owner)) Execute(data, container, arg);
+            if (CanExecute(data.Owner)) Execute(data, context, arg);
         }
 
-        protected abstract void Execute(WeaponActionExecutionData data, DiContainer container, T character);
+        protected abstract void Execute(WeaponActionExecutionData data, GameplayContext context, T character);
     }
 
     [Serializable]

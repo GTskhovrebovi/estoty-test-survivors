@@ -72,7 +72,7 @@ namespace Gameplay.ModifierSystem
             foreach (var onTickAction in ModifierData.OnTickActionsOnCharacter)
             {
                 onTickAction.TryExecute(new WeaponActionExecutionData(Source, CharacterStats, Team, Weapon),
-                    Weapon.Container, Target);
+                    Weapon.Context, Target);
             }
         }
 

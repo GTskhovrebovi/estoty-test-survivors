@@ -24,14 +24,14 @@ namespace Gameplay.WeaponSystem
         public Character Owner { get; private set; }
         public WeaponUser WeaponUser { get; private set; }
         public Character Target { get; private set; }
-        public DiContainer Container;
+        public GameplayContext Context{ get; private set; }
         
         private static readonly int UseHash = Animator.StringToHash("Use");
 
         [Inject]
-        public void Construct(DiContainer container)
+        public void Construct(GameplayContext Context)
         {
-            Container = container;
+            this.Context = Context;
         }
 
         public void BindModifier(AppliedModifier appliedModifier)

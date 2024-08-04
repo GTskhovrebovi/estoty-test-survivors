@@ -16,7 +16,6 @@ MonoBehaviour:
   <RemoveCurrent>k__BackingField: 0
   <ResetCurrentDuration>k__BackingField: 1
   <LoseStacksIndividually>k__BackingField: 0
-  <ModifierEffects>k__BackingField: 
   hasDuration: 1
   duration:
     variableType: 0
@@ -25,7 +24,7 @@ MonoBehaviour:
   statModifiers:
   - statType: {fileID: 11400000, guid: 9c7826671044ed74a91ea25be50c57f3, type: 2}
     modifierType: 2
-    value: -50
+    value: -70
     priority: 0
   hasTicker: 0
   tickInterval:

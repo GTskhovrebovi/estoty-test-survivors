@@ -17,7 +17,7 @@ MonoBehaviour:
   <CharacterPrefab>k__BackingField: {fileID: 1652269293436867907, guid: fa50e76db2809fd4fb219075b7ec7eb7, type: 3}
   <BaseStats>k__BackingField:
   - <StatType>k__BackingField: {fileID: 11400000, guid: 2577abd4afcc0e049beb3688f0c926db, type: 2}
-    <Value>k__BackingField: 1000
+    <Value>k__BackingField: 400
   - <StatType>k__BackingField: {fileID: 11400000, guid: 9952a42e1f75b9945b4447f3ff701b70, type: 2}
     <Value>k__BackingField: 10
   - <StatType>k__BackingField: {fileID: 11400000, guid: 9c7826671044ed74a91ea25be50c57f3, type: 2}

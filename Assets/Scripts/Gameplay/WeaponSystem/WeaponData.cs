@@ -10,7 +10,6 @@ namespace Gameplay.WeaponSystem
         [field: SerializeField] public string WeaponName { get; set; }
         [field: SerializeField, Multiline] public string Description { get; set; }
         [field: SerializeField] public Weapon Weapon { get; set; }
-        [field: SerializeField] public bool HasCast { get; set; } = true;
         [field: SerializeField] public Variable CooldownVariable { get; set; }
     }
 }

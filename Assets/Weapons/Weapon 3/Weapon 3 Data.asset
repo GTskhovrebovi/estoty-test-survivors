@@ -15,8 +15,7 @@ MonoBehaviour:
   <WeaponName>k__BackingField: Weapon 3
   <Description>k__BackingField: Weapon 3 Description
   <Weapon>k__BackingField: {fileID: -5385770634834302441, guid: 2a8b6bf8100f59d4ba79d051b2eaedcd, type: 3}
-  <HasCast>k__BackingField: 1
   <CooldownVariable>k__BackingField:
     variableType: 0
-    constantValue: 1
+    constantValue: 3
     statType: {fileID: 0}

@@ -92,7 +92,6 @@ namespace Gameplay
 
             Health.GetHit(damageEventArgs.Amount);
             animator.SetTrigger(Hit);
-
             if (damageEventArgs.Source != null)
                 damageEventArgs.Source.HandleDamageDeal(damageEventArgs);
         }
@@ -184,7 +183,7 @@ namespace Gameplay
                 _container = container;
             }
 
-            public Character Create(GameObject characterPrefab)
+            public Character Create(Character characterPrefab)
             {
                 var character = _container.InstantiatePrefabForComponent<Character>(characterPrefab);
                 return character;

@@ -15,8 +15,6 @@ MonoBehaviour:
   <CharacterName>k__BackingField: Player
   <StartingWeapons>k__BackingField:
   - {fileID: 11400000, guid: 28e124f2d8d907945a9ffef6025ef3d1, type: 2}
-  - {fileID: 11400000, guid: b8a5336c1bc368d409c208ec6984c570, type: 2}
-  - {fileID: 11400000, guid: 53c4ce6749517c745be4629d53c9f638, type: 2}
   <CharacterPrefab>k__BackingField: {fileID: 3802129132602507154, guid: 587c50995ae4b114c9b1738e18fcf273, type: 3}
   <BaseStats>k__BackingField:
   - <StatType>k__BackingField: {fileID: 11400000, guid: 1fd0578b7e8e9d14184f54ea53189752, type: 2}
@@ -30,6 +28,6 @@ MonoBehaviour:
   - <StatType>k__BackingField: {fileID: 11400000, guid: c75c155d1d2802a4691629187986d8e1, type: 2}
     <Value>k__BackingField: 4
   - <StatType>k__BackingField: {fileID: 11400000, guid: bb918a4e20bbbf74ba4e19c2e07ab518, type: 2}
-    <Value>k__BackingField: 50
+    <Value>k__BackingField: 40
   - <StatType>k__BackingField: {fileID: 11400000, guid: eaa3d23a0e65c8b49959b9ed705ccfb8, type: 2}
     <Value>k__BackingField: 4

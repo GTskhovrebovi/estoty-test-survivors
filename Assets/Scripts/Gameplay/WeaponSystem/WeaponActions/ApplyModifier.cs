@@ -12,7 +12,7 @@ namespace Gameplay.WeaponSystem.WeaponActions
         [SerializeField] protected ModifierData modifierData;
         [SerializeField] private bool bindToWeapon;
 
-        protected override void Execute(WeaponActionExecutionData data, DiContainer container, Character character)
+        protected override void Execute(WeaponActionExecutionData data, GameplayContext context, Character character)
         {
             var appliedModifier = character.ModifierHolder.ApplyModifier(modifierData, data.Owner, data.CharacterStats,
                 data.Team, data.Weapon);

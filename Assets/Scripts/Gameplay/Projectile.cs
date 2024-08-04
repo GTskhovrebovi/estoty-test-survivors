@@ -77,7 +77,7 @@ namespace Gameplay
         {
             foreach (var onHitAction in _onHitActions)
                 onHitAction.TryExecute(new WeaponActionExecutionData(Owner, CharacterStats, Team, Weapon),
-                    Weapon.Container, character);
+                    Weapon.Context, character);
         }
 
         protected override void End()

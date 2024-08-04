@@ -11,7 +11,7 @@ namespace Gameplay.WeaponSystem
         {
             if (Target == null) return;
             shootAction.TryExecute(new WeaponActionExecutionData(Owner, Owner.CharacterStats, Owner.Team, this),
-                Container);
+                Context);
             base.Use();
         }
     }
