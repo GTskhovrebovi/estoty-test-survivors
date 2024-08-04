@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay
 {
@@ -10,7 +11,7 @@ namespace Gameplay
         [SerializeField] protected ModifierData modifierData;
         [SerializeField] private bool bindToWeapon;
 
-        protected override void Execute(WeaponActionExecutionData data, Character character)
+        protected override void Execute(WeaponActionExecutionData data, DiContainer container, Character character)
         {
             var appliedModifier = character.ModifierHolder.ApplyModifier(modifierData, data.Owner, data.CharacterStats, data.Team, data.Weapon);
             if (bindToWeapon)

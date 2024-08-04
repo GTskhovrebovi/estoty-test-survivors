@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay
 {
@@ -9,7 +10,7 @@ namespace Gameplay
     {
         [SerializeField] protected Variable damageVariable;
 
-        protected override void Execute(WeaponActionExecutionData data, Character character)
+        protected override void Execute(WeaponActionExecutionData data, DiContainer container, Character character)
         {
             if (!data.Team.IsEnemy(character.Team)) return;
             

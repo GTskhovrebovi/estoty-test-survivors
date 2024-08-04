@@ -1,20 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace Gameplay
 {
     public class CharacterFactory : MonoBehaviour
     {
         private Dictionary<CharacterData, ObjectPool<Character>> _characterObjectPools = new();
+        private Character.Factory _characterFactory;
+        
+        [Inject]
+        public void Construct(Character.Factory characterFactory)
+        {
+            _characterFactory = characterFactory;
+        }
         
         private void CreatePoolForCharacter(CharacterData characterData)
         {
             _characterObjectPools.Add(characterData, new ObjectPool<Character>(
                 () =>
                 {
-                    var instantiatedCharacter = Object.Instantiate(characterData.CharacterPrefab);
+                    var instantiatedCharacter = _characterFactory.Create(characterData.CharacterPrefab.gameObject);
                     instantiatedCharacter.OnEndExistence += i =>_characterObjectPools[characterData].Release(i);
                     return instantiatedCharacter;
                 },
@@ -26,7 +33,7 @@ namespace Gameplay
                 {
                     i.gameObject.SetActive(false);
                 },
-                i => Object.Destroy(i.gameObject),
+                i => Destroy(i.gameObject),
                 true,
                 400
             ));
@@ -37,7 +44,6 @@ namespace Gameplay
             if (!_characterObjectPools.ContainsKey(characterData)) CreatePoolForCharacter(characterData);
 
             _characterObjectPools[characterData].Get(out var pooledCharacter);
-            SceneManager.MoveGameObjectToScene(pooledCharacter.gameObject, SceneManager.GetActiveScene());
             pooledCharacter.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
             pooledCharacter.RigidBody.position = spawnPosition;
             pooledCharacter.Initialize(characterData.BaseStats, team, characterData.StartingWeapons);

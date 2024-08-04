@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay
 {
@@ -14,12 +15,12 @@ namespace Gameplay
                     || (Requirement != null && character.WeaponActionRequirementHolder.HasRequirement(Requirement)));
         }
         
-        public void TryExecute(WeaponActionExecutionData data)
+        public void TryExecute(WeaponActionExecutionData data, DiContainer container)
         {
-            if (CanExecute(data.Owner)) Execute(data);
+            if (CanExecute(data.Owner)) Execute(data, container);
         }
         
-        protected abstract void Execute(WeaponActionExecutionData data);
+        protected abstract void Execute(WeaponActionExecutionData data, DiContainer container);
     }
     
     [Serializable]
@@ -33,11 +34,11 @@ namespace Gameplay
                     || (Requirement != null && character.WeaponActionRequirementHolder.HasRequirement(Requirement)));
         }
         
-        public void TryExecute(WeaponActionExecutionData data, T arg)
+        public void TryExecute(WeaponActionExecutionData data, DiContainer container, T arg)
         {
-            if (CanExecute(data.Owner)) Execute(data, arg);
+            if (CanExecute(data.Owner)) Execute(data, container, arg);
         }
-        protected abstract void Execute(WeaponActionExecutionData data, T character);
+        protected abstract void Execute(WeaponActionExecutionData data, DiContainer container, T character);
     }
     
     [Serializable]

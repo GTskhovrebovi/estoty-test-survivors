@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Utilities;
+using Zenject;
 
 namespace Gameplay
 {
@@ -15,6 +16,14 @@ namespace Gameplay
         public Transform WeaponContainer => weaponContainer;
         public  List<WeaponSlot> WeaponSlots => _weaponSlots;
         public bool WeaponSlotsFull => _weaponSlots.All(i => !i.IsEmpty);
+
+        private WeaponSlot.Factory _weaponSlotFactory;
+        
+        [Inject]
+        public void Construct(WeaponSlot.Factory weaponSlotFactory)
+        {
+            _weaponSlotFactory = weaponSlotFactory;
+        }
         
         private void Awake()
         {
@@ -28,7 +37,7 @@ namespace Gameplay
 
             for (var i = 0; i < numberOfWeaponSlots; i++)
             {
-                _weaponSlots.Add(new WeaponSlot(Character, this));
+                _weaponSlots.Add(_weaponSlotFactory.Create(Character, this));
             }
         
             foreach (var weaponData in startingWeapons)

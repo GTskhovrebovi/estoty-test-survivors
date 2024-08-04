@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay
 {
@@ -21,7 +22,15 @@ namespace Gameplay
         private readonly Action<Weapon> _castCallback;
         private readonly List<AppliedModifier> _bindedModifiers = new();
         private static readonly int UseHash = Animator.StringToHash("Use");
+        
+        public DiContainer Container;
 
+        [Inject]
+        public void Construct(DiContainer container)
+        {
+            Container = container;
+        }
+        
         public void BindModifier(AppliedModifier appliedModifier)
         {
             _bindedModifiers.Add(appliedModifier);
@@ -89,6 +98,21 @@ namespace Gameplay
         {
             if (Target == null) return;
             transform.right = Target.transform.position - transform.position;
+        }
+        
+        public class Factory : PlaceholderFactory<Weapon>
+        {
+            private readonly DiContainer _container;
+
+            public Factory(DiContainer container)
+            {
+                _container = container;
+            }
+            public Weapon Create(GameObject weaponPrefab)
+            {
+                var weapon = _container.InstantiatePrefabForComponent<Weapon>(weaponPrefab);
+                return weapon;
+            }
         }
     }
 }

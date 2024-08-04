@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay
 {
@@ -9,7 +10,7 @@ namespace Gameplay
         public Team Team { get; private set; }
 
         public Weapon Weapon { get; private set; } = null;
-        
+        public Context context;
         public WeaponActionExecutionData(Character owner, CharacterStats characterStats, Team team, Weapon weapon)
         {
             if (owner == null) Debug.Log("Action Executed with null owner");

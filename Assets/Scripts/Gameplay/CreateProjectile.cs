@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay
 {
@@ -13,7 +14,7 @@ namespace Gameplay
         [SerializeField] protected Variable travelDistance;
         [SerializeField] protected List<WeaponActionOnCharacter> onHitActions = new();
         
-        protected override void Execute(WeaponActionExecutionData data)
+        protected override void Execute(WeaponActionExecutionData data, DiContainer _container)
         {
             if (!data.Owner.HasAmmo) return;
             if (data.Weapon.Target == null) return;
@@ -21,8 +22,8 @@ namespace Gameplay
             data.Owner.SpendAmmo();
             
             var spawnPoint = data.Weapon.SpawnPoint;
-            
-            var instantiatedProjectile = (Projectile) FindObjectOfType<WeaponObjectFactory>().GetWeaponObject(projectilePrefab);
+            var weaponObjectFactory = _container.Resolve<WeaponObjectFactory>();
+            var instantiatedProjectile =  (Projectile) weaponObjectFactory.GetWeaponObject(projectilePrefab);
             instantiatedProjectile.transform.position = spawnPoint.position;
             instantiatedProjectile.transform.right = spawnPoint.right;
                 

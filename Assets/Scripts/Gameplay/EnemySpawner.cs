@@ -1,23 +1,27 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Gameplay
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] private List<CharacterData> enemyTypes;
-        [SerializeField] private float spawnRadius;
-        [SerializeField] private Team enemyTeam;
-        [SerializeField] private float initialSpawnInterval = 5f;
-        [SerializeField] private float spawnIntervalDecrease = 0.1f;
-        [SerializeField] private float minimumSpawnInterval = 1f;
-
+        private Settings _settings;
         private Character _player;
         private float _currentSpawnInterval;
         private float _timeSinceLastSpawn;
         private bool _spawning;
+        private CharacterFactory _characterFactory;
 
+        [Inject]
+        public void Construct(CharacterFactory characterFactory, Settings settings)
+        {
+            _characterFactory = characterFactory;
+            _settings = settings;
+        }
+        
         public void Initialize(Character player)
         {
             _player = player;
@@ -28,7 +32,7 @@ namespace Gameplay
             if (_player == null) return;
             if (_spawning) return;
             
-            _currentSpawnInterval = initialSpawnInterval;
+            _currentSpawnInterval = _settings.initialSpawnInterval;
             _timeSinceLastSpawn = 0f;
             _spawning = true;
         }
@@ -52,30 +56,40 @@ namespace Gameplay
             {
                 Spawn(_player);
                 _timeSinceLastSpawn = 0f;
-                _currentSpawnInterval = Mathf.Max(_currentSpawnInterval - spawnIntervalDecrease, minimumSpawnInterval);
+                _currentSpawnInterval = Mathf.Max(_currentSpawnInterval - _settings.spawnIntervalDecrease, _settings.minimumSpawnInterval);
             }
         }
         
-
-        
         public void Spawn(Character player)
         {
-            if (enemyTypes == null || enemyTypes.Count == 0) return;
+            if (_settings.enemyTypes == null || _settings.enemyTypes.Count == 0) return;
 
-            var randomIndex = Random.Range(0, enemyTypes.Count);
-            var randomEnemy = enemyTypes[randomIndex];
+            var randomIndex = Random.Range(0, _settings.enemyTypes.Count);
+            var randomEnemy = _settings.enemyTypes[randomIndex];
             
             var angle = Random.Range(0f, Mathf.PI * 2);
-            var x = spawnRadius * Mathf.Cos(angle);
-            var y = spawnRadius * Mathf.Sin(angle);
+            var x = _settings.spawnRadius * Mathf.Cos(angle);
+            var y = _settings.spawnRadius * Mathf.Sin(angle);
             var spawnPosition = new Vector3(x, y, 0);
             
-            var spawnedEnemy = FindObjectOfType<CharacterFactory>()
-                .Spawn(randomEnemy, enemyTeam, player.transform.position + spawnPosition);
+            var spawnedEnemy = _characterFactory.Spawn(randomEnemy, _settings.enemyTeam, player.transform.position + spawnPosition);
             if (spawnedEnemy.TryGetComponent<EnemyAIController>(out var characterBehaviorController))
             {
                 characterBehaviorController.SetTarget(_player);
             }
+        }
+        
+        [Serializable]
+        public class Settings
+        {
+            
+            
+            [SerializeField] public List<CharacterData> enemyTypes;
+            [SerializeField] public float spawnRadius;
+            [SerializeField] public Team enemyTeam;
+            [SerializeField] public float initialSpawnInterval = 5f;
+            [SerializeField] public float spawnIntervalDecrease = 0.1f;
+            [SerializeField] public float minimumSpawnInterval = 1f;
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay
 {
@@ -79,12 +80,6 @@ namespace Gameplay
             CurrentAmmoAmount = MaxAmmoAmount; 
             _maxAmmoStat.OnStatChanged += HandleMaxAmmoChange;
         }
-
-        [ContextMenu("Gethit80")]
-        public void GetHit80()
-        {
-            GetHit(new DamageEventArgs(this, this, 80));
-        }
     
         public void GetHit(DamageEventArgs damageEventArgs)
         {
@@ -151,12 +146,6 @@ namespace Gameplay
             CurrentAmmoAmount -= amount;
             OnAmmoChange?.Invoke(CurrentAmmoAmount);
         }
-        
-        [ContextMenu("Grant 90 exp")]
-        public void GrantExperience90()
-        {
-            GrantExperience(90);
-        }
 
         protected void Update()
         {
@@ -181,6 +170,21 @@ namespace Gameplay
             var flipX = FacingDirection.x >= 0 ? 1 : -1;
             graphics.transform.localScale = Vector3.Scale(_characterScale, new Vector3(flipX, 1, 1));
             animator.SetBool(Running, MovementDirection != Vector2.zero);
+        }
+        
+        public class Factory : PlaceholderFactory<Character>
+        {
+            private readonly DiContainer _container;
+
+            public Factory(DiContainer container)
+            {
+                _container = container;
+            }
+            public Character Create(GameObject characterPrefab)
+            {
+                var character = _container.InstantiatePrefabForComponent<Character>(characterPrefab);
+                return character;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay
 {
@@ -9,6 +10,13 @@ namespace Gameplay
         [SerializeField] private List<PickUp> possibleLoot;
 
         private Character _character;
+        private PickUpFactory _pickUpFactory;
+        
+        [Inject]
+        public void Construct(PickUpFactory pickUpFactory)
+        {
+            _pickUpFactory = pickUpFactory;
+        }
         
         private void Awake()
         {
@@ -33,7 +41,6 @@ namespace Gameplay
             }
         }
         
-        [ContextMenu("DropLoot")]
         private void DropLoot()
         {
             //TODO: implement drop chances 
@@ -49,7 +56,7 @@ namespace Gameplay
             foreach (var pickUp in lootToDrop)
             {
                 var dropPosition = Random.insideUnitCircle.normalized * (Random.value * lootDropRadius);
-                var pickUpInstance = FindObjectOfType<PickUpFactory>().GetPickUp(pickUp, transform.position);
+                var pickUpInstance = _pickUpFactory.GetPickUp(pickUp, transform.position);
                 pickUpInstance.Drop(dropPosition);
             }
         }

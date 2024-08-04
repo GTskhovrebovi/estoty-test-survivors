@@ -25,7 +25,6 @@ namespace Gameplay
         public Action OnExpire;
         
         public float ExpirationTime => StartTime + Duration;
-        public float NormalizedProgress => (Time.time - StartTime)/Duration;
 
         public List<AppliedStatModifier> AppliedStatModifiers { get; private set; } = new();
         
@@ -70,7 +69,7 @@ namespace Gameplay
         {
             foreach (var onTickAction in ModifierData.OnTickActionsOnCharacter)
             {
-                onTickAction.TryExecute(new WeaponActionExecutionData(Source, CharacterStats, Team, Weapon), Target);
+                onTickAction.TryExecute(new WeaponActionExecutionData(Source, CharacterStats, Team, Weapon), Weapon.Container, Target);
             }
         }
     

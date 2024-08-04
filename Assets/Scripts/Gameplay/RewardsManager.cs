@@ -1,20 +1,27 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Gameplay
 {
     public class RewardsManager : MonoBehaviour
     {
-        [SerializeField] private List<Upgrade> upgrades;
-        [SerializeField] private List<WeaponData> weapons;
-        
+        private WeaponLibrary _weaponLibrary;
+        private UpgradeLibrary _upgradeLibrary;
         private Character _character;
         private LevelingSystem _levelingSystem;
         private int _currentNumberOfLevels;
         
         public Action<IRewardAction> OnRewardGrant;
+        
+        [Inject]
+        public void Construct(WeaponLibrary weaponLibrary, UpgradeLibrary upgradeLibrary)
+        {
+            _weaponLibrary = weaponLibrary;
+            _upgradeLibrary = upgradeLibrary;
+        }
+        
         public void Initialize(Character player)
         {
             _character = player;
@@ -55,12 +62,12 @@ namespace Gameplay
             
             if (newWeapon)
             {
-                var weaponData = weapons[Random.Range(0, weapons.Count)];
+                var weaponData = _weaponLibrary.Weapons[Random.Range(0, _weaponLibrary.Weapons.Count)];
                 generatedRewards = new AddWeapon(weaponData);
             }
             else
             {
-                var upgrade = upgrades[Random.Range(0, upgrades.Count)];
+                var upgrade = _upgradeLibrary.Upgrades[Random.Range(0, _upgradeLibrary.Upgrades.Count)];
                 generatedRewards = new AddUpgrade(upgrade);
             }
             

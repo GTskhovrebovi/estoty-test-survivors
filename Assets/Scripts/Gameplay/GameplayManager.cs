@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay
 {
@@ -14,7 +15,13 @@ namespace Gameplay
         [SerializeField] protected RewardsManager rewardsManager;
 
         private Character _player;
-
+        private CharacterFactory _characterFactory;
+        
+        [Inject]
+        public void Construct(CharacterFactory characterFactory)
+        {
+            _characterFactory = characterFactory;
+        }
         private void Start()
         {
             StartGame();
@@ -22,7 +29,7 @@ namespace Gameplay
 
         private void StartGame()
         {
-            _player = FindObjectOfType<CharacterFactory>().Spawn(playerData, playerTeam, spawnPoint.position);
+            _player = _characterFactory.Spawn(playerData, playerTeam, spawnPoint.position);
             gameUI.Initialize(_player);
             cameraController.Initialize(_player);
             rewardsManager.Initialize(_player);
