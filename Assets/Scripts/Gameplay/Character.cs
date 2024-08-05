@@ -149,7 +149,7 @@ namespace Gameplay
             OnAmmoChange?.Invoke(CurrentAmmoAmount);
         }
 
-        protected void Update()
+        protected void FixedUpdate()
         {
             Move();
         }
@@ -164,9 +164,9 @@ namespace Gameplay
                 // var movementSpeed = Mathf.Clamp(_movementStat.Value, 0, Mathf.Infinity);
                 var movementSpeed = Mathf.Clamp(_movementStat.Value, 0, Mathf.Infinity);
 
-                var movementAmount = movementSpeed * Time.deltaTime;
+                var movementAmount = movementSpeed * Time.fixedDeltaTime;
                 var delta = movementAmount * MovementDirection;
-                transform.Translate(delta);
+                RigidBody.MovePosition(RigidBody.position + delta);
             }
 
             var flipX = FacingDirection.x >= 0 ? 1 : -1;
